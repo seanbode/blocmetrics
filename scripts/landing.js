@@ -1,5 +1,3 @@
-
-
 var animatePoints = function (points) {
 	"use strict";
 	var revealPoint = function (index) {
@@ -10,7 +8,7 @@ var animatePoints = function (points) {
 	};
 
   for (var i = 0; i < points.length; i ++) {
-    revealPoint();
+    revealPoint(i);
   };
 };
 
