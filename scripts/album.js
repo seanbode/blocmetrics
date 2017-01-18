@@ -44,10 +44,6 @@ var createSongRow = function(songNumber, songName, songLength) {
 
   var currentlyPlayingSong = null;
 
-  $(document).ready(function() {
-    setCurrentAlbum(albumPicasso);
-  });
-
   var $row = $(template);
 
   var clickHandler = function() {
@@ -98,17 +94,17 @@ var setCurrentAlbum = function(album) {
   $albumImage.attr('src', album.albumArtUrl);
   $albumSongList.empty();
   for (var i = 0; i < album.songs.length; i++) {
-    var $newRow = createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
-    $albumSongList.append($newRow);
+    // var $newRow = createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
+    // $albumSongList.append($newRow);
   }
 };
 
 $(document).ready(function() {
   setCurrentAlbum(albumPicasso);
 
-  for (var i = 0; i < songRows.length; i++) {
-    songRows[i].addEventListener('click', function(event) {
-      clickHandler(event.target);
-    });
-  }
+  // for (var i = 0; i < songRows.length; i++) {
+    // songRows[i].addEventListener('click', function(event) {
+      // clickHandler(event.target);
+    // });
+  // }
 });
