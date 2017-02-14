@@ -13,6 +13,9 @@ var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
 
 var setSong = function(songNumber) {
+  if (currentSoundFile) {
+    currentSoundFile.stop();
+  }
   currentlyPlayingSongNumber = parseInt(songNumber);
   createSongFromAlbum = currentAlbum.songs[songNumber - 1]
 
@@ -22,6 +25,13 @@ var setSong = function(songNumber) {
     formats: [ 'mp3' ],
     preload: true
   });
+  setVolume(currentVolume);
+};
+
+var setVolume = function(volume) {
+  if (currentSoundFile) {
+      currentSoundFile.setVolume(volume);
+  }
 };
 
 var getSongNumberCell = function(number) {
