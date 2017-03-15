@@ -16,14 +16,17 @@ var setSong = function(songNumber) {
   if (currentSoundFile) {
     currentSoundFile.stop();
   }
-  currentlyPlayingSongNumber = parseInt(songNumber);
-  currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
-  currentSoundFile = new buzz.sound(currentSongFromAlbum.audioUrl, {
-    formats: [ 'mp3' ],
-    preload: true
-  });
-  setVolume(currentVolume);
-};
+  if (songNumber != null) {
+    currentlyPlayingSongNumber = parseInt(songNumber);
+    currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
+    currentSoundFile = new buzz.sound(currentSongFromAlbum.audioUrl, {
+        formats: [ 'mp3' ],
+        preload: true
+      });
+      setVolume(currentVolume);
+    }
+  };
+
 
 var setVolume = function(volume) {
   if (currentSoundFile) {
