@@ -1,6 +1,8 @@
 (function() {
-  function Metric($rootScope) {
-    $rootScope.songPlays = [];
+  function Metric($rootScope, $window) {
+    if (!$window.localStorage.getItem("songPlays")) {
+      $window.localStorage.songPlays = JSON.stringify([]);
+    };
 
     return {
       // Function that records a metric object by pushing it to the $rootScope array
@@ -8,13 +10,15 @@
         // Add time to event register// moment.js
         if (songObj != undefined) {
           songObj['playedAt'] = new Date()
+        var plays = JSON.parse($window.localStorage.songPlays)
+        plays.push(songObj)
+        $window.localStorage.songPlays = JSON.stringify(plays)
         };
-        $rootScope.songPlays.push(songObj);
 
       },
       listSongsPlayed: function() {
         var songs = [];
-        angular.forEach($rootScope.songPlays, function(song) {
+        angular.forEach(JSON.parse($window.localStorage.songPlays), function(song) {
             songs.push(song.title);
         });
         return songs;
@@ -31,5 +35,5 @@ angular
         Metrics.listSongsPlayed()
       };
     })
-    .service('Metric', ['$rootScope', Metric]);
+    .service('Metric', Metric);
 })();
